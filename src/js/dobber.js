@@ -1,7 +1,7 @@
 import { Actor, Engine, Vector, DisplayMode, CollisionType, Keys, Animation, SpriteSheet, range, AnimationStrategy } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
 import { Platform } from "./platform.js"
-import { Triggercircle } from "./trigger.js"
+import { Triggercircle } from "./triggercircle.js"
 import { ShadowFish } from "./shadowfish.js"
 
 export class Dobber extends Actor {
