@@ -4,7 +4,7 @@ import { Resources, ResourceLoader } from './resources.js'
 import { Elf } from './elf.js'
 import { Platform } from './platform.js'
 import { Background } from './background.js'
-import { ShadowFish } from './fish.js'
+import { ShadowFish } from './shadowfish.js'
 import { Triggercircle } from './trigger.js'
 import { UI } from './ui.js'
 import { Dobber } from './dobber.js'
@@ -53,11 +53,6 @@ export class Game extends Engine {
 
         const platform = new Platform()
         this.add(platform)
-
-
-
-
-
 
         let ypositions = [638, 620, 643, 675, 690, 700]
         ypositions = ypositions.sort(() => Math.random() * 0.5)

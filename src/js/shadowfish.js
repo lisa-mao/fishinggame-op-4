@@ -12,15 +12,8 @@ export class ShadowFish extends Actor {
         })
 
         this.graphics.use(Resources.Fish.toSprite())
-        // let index = new Random
-
-        // index.pickOne([638, 620, 643, 675, 690, 700])
-
-        // let y = index
-        // console.log(y)
-
+     
         this.speed = speed
-
         this.pos = new Vector(x, y)
 
         this.body.collisionType = CollisionType.Fixed
@@ -37,28 +30,12 @@ export class ShadowFish extends Actor {
             builder.moveBy(-600, 0, this.speed)
 
             builder.moveBy(600, 0, this.speed)
-
         }
         )
     }
 
     resetposition() {
-        
-
-       // this.scene.engine.resetYOnHit(ypositions[i])
         let x = Math.random() + 1300
         this.pos = new Vector(x, this.pos.y)
-
-
-
-
     }
-
-    // fishLeft(e) {
-    //     let y = Math.random() * 638
-    //     e.target.pos = new Vector(680, y)
-    // }
-
-
-
 }

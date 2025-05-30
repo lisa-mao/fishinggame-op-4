@@ -2,7 +2,7 @@ import { Actor, Engine, Vector, DisplayMode, CollisionType, Keys, Animation, Spr
 import { Resources, ResourceLoader } from './resources.js'
 import { Platform } from "./platform.js"
 import { Triggercircle } from "./trigger.js"
-import { ShadowFish } from "./fish.js"
+import { ShadowFish } from "./shadowfish.js"
 
 export class Dobber extends Actor {
    
