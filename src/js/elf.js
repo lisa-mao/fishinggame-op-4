@@ -73,6 +73,7 @@ export class Elf extends Actor {
                 this.score++
                 this.scene.engine.ui.showScore(this.score)
 
+                this.scene.engine.ui.triggerText("You got a small goldfish", 200,600)
             } else {
                 console.log("you were too slow!!!")
             }
@@ -120,7 +121,7 @@ export class Elf extends Actor {
         //show text & enabling fishingenabled to yes
         if (event.other.owner instanceof Triggercircle && this.state === 'idle') {
             this.#fishingEnabled = "yes"
-            this.scene.engine.ui.triggerText("Press E to fish", 400, 600)
+            this.scene.engine.ui.triggerText("Press E to fish", 200, 600)
         }
 
     }
@@ -130,7 +131,7 @@ export class Elf extends Actor {
         //if player left triggerCircle fishingenabled goes disabled and the text 'disappears'
         if (event.other.owner instanceof Triggercircle && this.state === 'idle') {
             this.#fishingEnabled = "no"
-            this.scene.engine.ui.triggerText("", 400, 600)
+            this.scene.engine.ui.triggerText("", 200, 600)
         }
     }
 

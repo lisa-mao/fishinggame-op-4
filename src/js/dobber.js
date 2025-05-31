@@ -28,10 +28,10 @@ export class Dobber extends Actor {
     }
 
     onInitialize(engine) {
-        this.on('collisionstart', (event) => this.hitSomething(event))
+        this.on('collisionstart', (event) => this.#hitSomething(event))
     }
 
-    hitSomething(event) {
+    #hitSomething(event) {
 
         if (event.other.owner instanceof ShadowFish) {
             this.scene.engine.ui.triggerText("Press space when the fish aligns in the rectangle", 50, 650)
