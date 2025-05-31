@@ -4,6 +4,7 @@ import { Platform } from "./platform.js"
 import { Triggercircle } from "./triggercircle.js"
 
 export class Elf extends Actor {
+    
     state
     score
     #fishingEnabled

@@ -22,6 +22,7 @@ export class Game extends Engine {
 
     constructor() {
         super({
+
             width: 1280,
             height: 720,
             maxFps: 60,
@@ -31,6 +32,7 @@ export class Game extends Engine {
             },
             displayMode: DisplayMode.FitScreen,
         })
+
         this.showDebug(true)
         this.start(ResourceLoader).then(() => this.startGame())
     }
@@ -38,7 +40,6 @@ export class Game extends Engine {
 
 
     startGame() {
-        console.log("start de game!")
         const mainB = new Background()
         this.add(mainB)
 
@@ -65,26 +66,12 @@ export class Game extends Engine {
             this.add(fish)
         }
 
-
         this.battlingBar = new BattlingBar()
         this.add(this.battlingBar)
 
         this.ui = new UI()
         this.add(this.ui)
-
-
     }
-
-    // resetYOnHit() {
-    //     let ypositions = [638, 620, 643, 675, 690, 700]
-    //     ypositions = ypositions.sort(() => Math.random() * 0.5)
-
-    //     for (let i = 0; i < ypositions.length; i++) {
-
-    //         console.log(ypositions[i])
-    //     }
-    // }
-
 }
 
 new Game()

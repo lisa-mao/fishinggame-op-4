@@ -1,7 +1,6 @@
 import { ImageSource, Sound, Resource, Loader } from 'excalibur'
 import { BattlingBar } from './battlingbar'
 
-// voeg hier jouw eigen resources toe
 const Resources = {
     MainBackground: new ImageSource('images/mainBackground.png'),
     Elf: new ImageSource('images/elf.png'),
@@ -14,9 +13,7 @@ const Resources = {
     BattlingBar: new ImageSource('images/battlingBar.png'),
     BattlingFish: new ImageSource('images/battlingFish.png'),
     Select: new ImageSource('images/select.png')
-    
 }
-
 
 const ResourceLoader = new Loader()
 for (let res of Object.values(Resources)) {
