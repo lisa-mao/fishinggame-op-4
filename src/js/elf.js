@@ -29,7 +29,7 @@ export class Elf extends Actor {
 
         // fishing, battling
         this.graphics.use(Resources.Elf.toSprite())
-        const fishing = Animation.fromSpriteSheet(runSheet, range(1, 10), 60, AnimationStrategy.Loop)
+        const fishing = Animation.fromSpriteSheet(runSheet, range(1, 10), 60, AnimationStrategy.Freeze)
         this.graphics.add("fishing", fishing)
 
         //basic properties
@@ -55,7 +55,6 @@ export class Elf extends Actor {
 
     fishingMovement(engine) {
         this.#fishingEnabled = "no"
-
     }
 
     
