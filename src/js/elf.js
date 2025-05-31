@@ -15,7 +15,7 @@ export class Elf extends Actor {
         super({
             width: Resources.Elf.width,
             height: Resources.Elf.height,
-            
+
         })
         const runSheet = SpriteSheet.fromImageSource({
             image: Resources.ElfFishing,
@@ -37,8 +37,8 @@ export class Elf extends Actor {
         this.scale = new Vector(1.5, 1.5)
         this.body.collisionType = CollisionType.Active
     }
-    
 
+    //states with their according methods
     onPreUpdate(engine) {
         if (this.state === 'idle') {
             this.idleMovement(engine)
@@ -53,60 +53,55 @@ export class Elf extends Actor {
 
     }
 
+    //unable to press e again when in this state
     fishingMovement(engine) {
         this.#fishingEnabled = "no"
     }
 
-    
 
+    //battling method activating a battlingbar 
     battleReeling(engine) {
         let kb = engine.input.keyboard
         this.#fishingEnabled = "no"
         if (kb.wasPressed(Keys.Space)) {
-           
+
 
             console.log(engine.battlingBar.select.fishHitsSelectbox)
-            if(engine.battlingBar.select.fishHitsSelectbox) {
+            if (engine.battlingBar.select.fishHitsSelectbox) {
                 console.log("YOU CAUGHT THE FISH~!!!!!! ")
-                 this.scene.engine.battlingBar.barDeactive()
-                 this.state = 'idle'
-                 this.score++
-                 this.scene.engine.ui.showScore(this.score)
-                 
+                this.scene.engine.battlingBar.barDeactive()
+                this.state = 'idle'
+                this.score++
+                this.scene.engine.ui.showScore(this.score)
+
             } else {
                 console.log("you were too slow!!!")
             }
-
-
-
-        //    if (selectbox.fishHitsSelectbox) {
-
-        //    }
         }
     }
 
 
-
+    //walking movement & triggers the triggerCircle to enable fishing
     idleMovement(engine) {
         let xspeed = 0
         let yspeed = 0
-        
+
         let kb = engine.input.keyboard
 
         if (kb.isHeld(Keys.A)) {
             xspeed = -300
             this.graphics.use(Resources.ElfSide.toSprite())
-            this.graphics.flipHorizontal = true     
+            this.graphics.flipHorizontal = true
 
         } else if (kb.isHeld(Keys.D)) {
             xspeed = 300
             this.graphics.use(Resources.ElfSide.toSprite())
             this.graphics.flipHorizontal = false
-           
+
         } else if (kb.wasPressed(Keys.E) && this.#fishingEnabled === "yes") {
             console.log('fish')
             this.graphics.use('fishing')
-           
+
             this.state = 'fishing'
 
             this.scene.engine.dobbero.dobberActive()
@@ -117,32 +112,26 @@ export class Elf extends Actor {
     }
 
 
-
+    //collision events
     onInitialize(engine) {
         this.on('collisionstart', (event) => this.hitSomething(event))
         this.on('collisionend', (event) => this.leftSomething(event))
     }
 
+
     hitSomething(event) {
-
-
-        if (event.other.owner instanceof Platform) {
-            // Je kan `instanceof` gebruiken om te zien waar je tegenaan botst.
-
-
-        }
-
+        //show text & enabling fishingenabled to yes
         if (event.other.owner instanceof Triggercircle && this.state === 'idle') {
             this.#fishingEnabled = "yes"
-
             this.scene.engine.ui.triggerText("Press E to fish", 400, 600)
         }
 
     }
 
     leftSomething(event) {
-        if (event.other.owner instanceof Triggercircle && this.state === 'idle') {
 
+        //if player left triggerCircle fishingenabled goes disabled and the text 'disappears'
+        if (event.other.owner instanceof Triggercircle && this.state === 'idle') {
             this.#fishingEnabled = "no"
             this.scene.engine.ui.triggerText("", 400, 600)
         }
