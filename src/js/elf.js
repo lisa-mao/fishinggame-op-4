@@ -4,19 +4,17 @@ import { Platform } from "./platform.js"
 import { Triggercircle } from "./triggercircle.js"
 
 export class Elf extends Actor {
-
     state
     score
     #fishingEnabled
 
     constructor() {
-
-
         super({
             width: Resources.Elf.width,
             height: Resources.Elf.height,
 
         })
+
         const runSheet = SpriteSheet.fromImageSource({
             image: Resources.ElfFishing,
             grid: { rows: 1, columns: 12, spriteWidth: 64, spriteHeight: 60 }
@@ -50,7 +48,6 @@ export class Elf extends Actor {
         if (this.state === 'fishreeling') {
             this.battleReeling(engine)
         }
-
     }
 
     //unable to press e again when in this state
@@ -65,12 +62,12 @@ export class Elf extends Actor {
         this.#fishingEnabled = "no"
         if (kb.wasPressed(Keys.Space)) {
 
-
-            console.log(engine.battlingBar.select.fishHitsSelectbox)
             if (engine.battlingBar.select.fishHitsSelectbox) {
                 console.log("YOU CAUGHT THE FISH~!!!!!! ")
                 this.scene.engine.battlingBar.barDeactive()
+
                 this.state = 'idle'
+
                 this.score++
                 this.scene.engine.ui.showScore(this.score)
 
@@ -99,16 +96,14 @@ export class Elf extends Actor {
             this.graphics.flipHorizontal = false
 
         } else if (kb.wasPressed(Keys.E) && this.#fishingEnabled === "yes") {
-            console.log('fish')
             this.graphics.use('fishing')
 
             this.state = 'fishing'
 
             this.scene.engine.dobbero.dobberActive()
-
         }
-        this.vel = new Vector(xspeed, yspeed)
 
+        this.vel = new Vector(xspeed, yspeed)
     }
 
 
