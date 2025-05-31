@@ -15,7 +15,7 @@ export class Select extends Actor {
             selector: false
         })
 
-        this.sfishHitsSelectbox = false
+        this.fishHitsSelectbox = false
 
         this.graphics.use(Resources.Select.toSprite())
         this.pos = new Vector(0, 0)
