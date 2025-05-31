@@ -40,25 +40,25 @@ export class Elf extends Actor {
     //states with their according methods
     onPreUpdate(engine) {
         if (this.state === 'idle') {
-            this.idleMovement(engine)
+            this.#idleMovement(engine)
         }
         if (this.state === 'fishing') {
-            this.fishingMovement(engine)
+            this.#fishingMovement(engine)
         }
 
         if (this.state === 'fishreeling') {
-            this.battleReeling(engine)
+            this.#battleReeling(engine)
         }
     }
 
     //unable to press e again when in this state
-    fishingMovement(engine) {
+    #fishingMovement(engine) {
         this.#fishingEnabled = "no"
     }
 
 
     //battling method activating a battlingbar 
-    battleReeling(engine) {
+    #battleReeling(engine) {
         let kb = engine.input.keyboard
         this.#fishingEnabled = "no"
         if (kb.wasPressed(Keys.Space)) {
@@ -73,7 +73,7 @@ export class Elf extends Actor {
                 this.score++
                 this.scene.engine.ui.showScore(this.score)
 
-                this.scene.engine.ui.triggerText("You got a small goldfish", 200,600)
+                this.scene.engine.ui.triggerText("You caught a small hairline receding goldfish!!", 50,600)
             } else {
                 console.log("you were too slow!!!")
             }
@@ -82,7 +82,7 @@ export class Elf extends Actor {
 
 
     //walking movement & triggers the triggerCircle to enable fishing
-    idleMovement(engine) {
+    #idleMovement(engine) {
         let xspeed = 0
         let yspeed = 0
 
@@ -112,12 +112,12 @@ export class Elf extends Actor {
 
     //collision events
     onInitialize(engine) {
-        this.on('collisionstart', (event) => this.hitSomething(event))
-        this.on('collisionend', (event) => this.leftSomething(event))
+        this.on('collisionstart', (event) => this.#hitSomething(event))
+        this.on('collisionend', (event) => this.#leftSomething(event))
     }
 
 
-    hitSomething(event) {
+    #hitSomething(event) {
         //show text & enabling fishingenabled to yes
         if (event.other.owner instanceof Triggercircle && this.state === 'idle') {
             this.#fishingEnabled = "yes"
@@ -126,7 +126,7 @@ export class Elf extends Actor {
 
     }
 
-    leftSomething(event) {
+    #leftSomething(event) {
 
         //if player left triggerCircle fishingenabled goes disabled and the text 'disappears'
         if (event.other.owner instanceof Triggercircle && this.state === 'idle') {

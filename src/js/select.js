@@ -23,18 +23,18 @@ export class Select extends Actor {
     }
 
     onInitialize(engine) {
-        this.on('collisionstart', (event) => this.hitSomething(event))
-        this.on('collisionend', (event) => this.unhitSomething(event))
+        this.on('collisionstart', (event) => this.#hitSomething(event))
+        this.on('collisionend', (event) => this.#unhitSomething(event))
     }
 
-    hitSomething(event) {
+    #hitSomething(event) {
 
         if (event.other.owner instanceof BattlingFish) {
             this.fishHitsSelectbox = true
         } 
     }
 
-    unhitSomething(event) {
+    #unhitSomething(event) {
 
         if (event.other.owner instanceof BattlingFish) {
             this.fishHitsSelectbox = false
