@@ -21,21 +21,23 @@ export class Elf extends Actor {
             image: Resources.ElfFishing,
             grid: { rows: 1, columns: 12, spriteWidth: 64, spriteHeight: 60 }
         })
-        this.#fishingEnabled = "no"
+
+        //unique properties
+        this.#fishingEnabled = "no" //private so it cant be changed elsewhere
         this.state = "idle"
         this.score = 0
+
         // fishing, battling
         this.graphics.use(Resources.Elf.toSprite())
-        const fishing = Animation.fromSpriteSheet(runSheet, range(1, 10), 60, AnimationStrategy.Freeze)
+        const fishing = Animation.fromSpriteSheet(runSheet, range(1, 10), 60, AnimationStrategy.Loop)
         this.graphics.add("fishing", fishing)
 
-
-       
-
+        //basic properties
         this.pos = new Vector(420, 600)
         this.scale = new Vector(1.5, 1.5)
         this.body.collisionType = CollisionType.Active
     }
+    
 
     onPreUpdate(engine) {
         if (this.state === 'idle') {
