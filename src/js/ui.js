@@ -10,7 +10,7 @@ export class UI extends Actor {
         super()
 
         this.#scoreLabel = new Label({
-            text: `Amount of fish caught: 0`,
+            text: `Score: 0`,
             pos: new Vector(250, 350),
             font: new Font({
                 family: 'Arial',
@@ -39,7 +39,7 @@ export class UI extends Actor {
     }
 
     showScore(score) {
-        this.#scoreLabel.text = `Amount of fish caught: ${score} `
+        this.#scoreLabel.text = `Score: ${score} `
         this.#scoreLabel.pos = new Vector(250, 350)
     }
 }

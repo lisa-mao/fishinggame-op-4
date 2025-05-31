@@ -1,4 +1,4 @@
-import { Actor, Engine, Vector, DisplayMode, CollisionType, Keys, Animation, SpriteSheet, range, AnimationStrategy } from "excalibur"
+import { Actor, Engine, Vector, DisplayMode, CollisionType, Keys, Animation, SpriteSheet, range, AnimationStrategy, randomIntInRange, Random } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js'
 import { Platform } from "./platform.js"
 import { Triggercircle } from "./triggercircle.js"
@@ -70,10 +70,21 @@ export class Elf extends Actor {
                 this.state = 'idle'
                 this.#fishingEnabled = "yes"
             console.log(this.#fishingEnabled)
-                this.score++
-                this.scene.engine.ui.showScore(this.score)
 
-                this.scene.engine.ui.triggerText("You caught a small hairline receding goldfish!!", 50,600)
+            let fish  = randomIntInRange(1,3)
+            console.log(fish)
+            
+
+                this.score = this.score + fish
+                this.scene.engine.ui.showScore(this.score)
+                if (fish === 1){
+                    this.scene.engine.ui.triggerText("You caught a small hairline receding goldfish!", 50,600)
+                } else if (fish === 2){
+                    this.scene.engine.ui.triggerText("You caught a medium cod!!", 50,600)
+                } else if (fish === 3){
+                    this.scene.engine.ui.triggerText("You caught a big salmon!!!", 50,600)
+                }
+                
             } else {
                 console.log("you were too slow!!!")
             }
