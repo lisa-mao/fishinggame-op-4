@@ -31,14 +31,13 @@ export class Select extends Actor {
 
         if (event.other.owner instanceof BattlingFish) {
             this.fishHitsSelectbox = true
-        }
+        } 
     }
 
     unhitSomething(event) {
 
         if (event.other.owner instanceof BattlingFish) {
             this.fishHitsSelectbox = false
-        }
+        } 
     }
-
 }
