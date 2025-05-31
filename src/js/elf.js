@@ -68,7 +68,8 @@ export class Elf extends Actor {
                 this.scene.engine.battlingBar.barDeactive()
 
                 this.state = 'idle'
-
+                this.#fishingEnabled = "yes"
+            console.log(this.#fishingEnabled)
                 this.score++
                 this.scene.engine.ui.showScore(this.score)
 
