@@ -7,6 +7,7 @@ export class Elf extends Actor {
 
     state
     score
+    #fishingEnabled
 
     constructor() {
 
@@ -14,13 +15,13 @@ export class Elf extends Actor {
         super({
             width: Resources.Elf.width,
             height: Resources.Elf.height,
-            fishingEnabled: false
+            
         })
         const runSheet = SpriteSheet.fromImageSource({
             image: Resources.ElfFishing,
             grid: { rows: 1, columns: 12, spriteWidth: 64, spriteHeight: 60 }
         })
-
+        this.#fishingEnabled = "no"
         this.state = "idle"
         this.score = 0
         // fishing, battling
@@ -51,7 +52,7 @@ export class Elf extends Actor {
     }
 
     fishingMovement(engine) {
-        this.fishingEnabled = false
+        this.#fishingEnabled = "no"
 
     }
 
@@ -59,7 +60,7 @@ export class Elf extends Actor {
 
     battleReeling(engine) {
         let kb = engine.input.keyboard
-        this.fishingEnabled = false
+        this.#fishingEnabled = "no"
         if (kb.wasPressed(Keys.Space)) {
            
 
@@ -94,17 +95,17 @@ export class Elf extends Actor {
         if (kb.isHeld(Keys.A)) {
             xspeed = -300
             this.graphics.use(Resources.ElfSide.toSprite())
-            this.graphics.flipHorizontal = true     // flip de sprite
+            this.graphics.flipHorizontal = true     
 
         } else if (kb.isHeld(Keys.D)) {
             xspeed = 300
             this.graphics.use(Resources.ElfSide.toSprite())
             this.graphics.flipHorizontal = false
-            // flip de sprite
-        } else if (kb.wasPressed(Keys.E)) {
+           
+        } else if (kb.wasPressed(Keys.E) && this.#fishingEnabled === "yes") {
             console.log('fish')
             this.graphics.use('fishing')
-            // Animation.reset
+           
             this.state = 'fishing'
 
             this.scene.engine.dobbero.dobberActive()
@@ -131,9 +132,9 @@ export class Elf extends Actor {
         }
 
         if (event.other.owner instanceof Triggercircle && this.state === 'idle') {
-            this.fishingEnabled = true
+            this.#fishingEnabled = "yes"
 
-            this.scene.engine.ui.triggerText("Hold E to fish", 400, 600)
+            this.scene.engine.ui.triggerText("Press E to fish", 400, 600)
         }
 
     }
@@ -141,7 +142,7 @@ export class Elf extends Actor {
     leftSomething(event) {
         if (event.other.owner instanceof Triggercircle && this.state === 'idle') {
 
-            this.fishingEnabled = false
+            this.#fishingEnabled = "no"
             this.scene.engine.ui.triggerText("", 400, 600)
         }
     }

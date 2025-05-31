@@ -75,15 +75,15 @@ export class Game extends Engine {
 
     }
 
-    resetYOnHit() {
-        let ypositions = [638, 620, 643, 675, 690, 700]
-        ypositions = ypositions.sort(() => Math.random() * 0.5)
+    // resetYOnHit() {
+    //     let ypositions = [638, 620, 643, 675, 690, 700]
+    //     ypositions = ypositions.sort(() => Math.random() * 0.5)
 
-        for (let i = 0; i < ypositions.length; i++) {
+    //     for (let i = 0; i < ypositions.length; i++) {
 
-            console.log(ypositions[i])
-        }
-    }
+    //         console.log(ypositions[i])
+    //     }
+    // }
 
 }
 
