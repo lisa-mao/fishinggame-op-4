@@ -18,7 +18,10 @@ import { Select } from './select.js'
 export class Game extends Engine {
 
     player
+    dobbero
+    battlingBar
     ui
+
 
     constructor() {
         super({
@@ -34,12 +37,12 @@ export class Game extends Engine {
         })
 
         // this.showDebug(true)
-        this.start(ResourceLoader).then(() => this.startGame())
+        this.start(ResourceLoader).then(() => this.#startGame())
     }
 
 
 
-    startGame() {
+    #startGame() {
         const mainB = new Background()
         this.add(mainB)
 
